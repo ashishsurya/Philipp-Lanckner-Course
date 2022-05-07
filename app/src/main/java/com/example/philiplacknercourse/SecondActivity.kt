@@ -1,17 +1,18 @@
 package com.example.philiplacknercourse
 
-import android.content.Intent
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_second.*
 
-class SecondActivity:AppCompatActivity() {
+class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_second)
 
-        btnBack.setOnClickListener {
-            finish()
-        }
+        val name = intent.getStringExtra("EXTRA_NAME")
+        val age = intent.getIntExtra("EXTRA_AGE", 0)
+        val country = intent.getStringExtra("EXTRA_COUNTRY")
+
+        tvPerson.text = "${name} is ${age} years old and lives in ${country}"
     }
 }
