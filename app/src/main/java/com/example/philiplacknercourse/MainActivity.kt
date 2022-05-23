@@ -31,29 +31,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val firstFragment = FirstFragment()
+        val secondFragment = SecondFragment()
 
-//        creating a list for our adapter view
-        var todolist = mutableListOf(
-            Todo("Hello",true),
-            Todo("Enough go through your work", false)
-        )
-
-//      creating a new adapter class
-        val adapter = TodoAdapter(todolist)
-
-        rvTodos.adapter = adapter
-        rvTodos.layoutManager = LinearLayoutManager(this)
-
-
-        btnAddTodo.setOnClickListener {
-            val title = etNewTodo.text.toString()
-            val todo = Todo(title, false)
-
-            todolist.add(todo)
-
-            adapter.notifyItemInserted(todolist.size - 1)
-
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.flFragment, firstFragment)
+            commit()
         }
+
+        btnF1.setOnClickListener {
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.flFragment, firstFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
+
+        btnF2.setOnClickListener {
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.flFragment, secondFragment)
+                addToBackStack(null)
+
+                commit()
+            }
+        }
+
     }
 
 
