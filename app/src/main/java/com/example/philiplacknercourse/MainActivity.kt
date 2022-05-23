@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -31,32 +32,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val firstFragment = FirstFragment()
-        val secondFragment = SecondFragment()
+        val fF = FirstFragment();
+        val sF = SecondFragment();
+        val tF = ThirdFragment()
 
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment, firstFragment)
-            commit()
-        }
+        setCurrentFragment(fF)
 
-        btnF1.setOnClickListener {
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.flFragment, firstFragment)
-                addToBackStack(null)
-                commit()
+        bottomNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.miHome -> setCurrentFragment(fF)
+                R.id.miMessages -> setCurrentFragment(sF)
+                R.id.miProfile -> setCurrentFragment(tF)
             }
-        }
-
-        btnF2.setOnClickListener {
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.flFragment, secondFragment)
-                addToBackStack(null)
-
-                commit()
-            }
+            true
         }
 
     }
+
+
+    private fun setCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.flFragment, fragment)
+            commit()
+        }
 
 
 }

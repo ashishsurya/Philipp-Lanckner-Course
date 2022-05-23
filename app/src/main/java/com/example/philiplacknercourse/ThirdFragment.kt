@@ -7,6 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 
 
-class SecondFragment : Fragment() {
+class ThirdFragment : Fragment(R.layout.fragment_third) {
 
 }

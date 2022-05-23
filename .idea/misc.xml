@@ -8,8 +8,10 @@
         <entry key="app/src/main/res/layout/custom_toast.xml" value="0.28884429931640626" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_third.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/item_todo.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/menu/app_bar_menu.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.28229166666666666" />
       </map>
     </option>
   </component>
