@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 /*
@@ -30,30 +31,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val customList = listOf("First", "Second", "Third", "Fourth")
-        val adapter = ArrayAdapter<String>(
-            this,
-            com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
-            customList
+
+//        creating a list for our adapter view
+        var todolist = mutableListOf(
+            Todo("Hello",true),
+            Todo("Enough go through your work", false)
         )
-        spMonths.adapter = adapter
-        spMonths.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                adapterView: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                Toast.makeText(
-                    this@MainActivity,
-                    "You selected ${adapterView?.getItemAtPosition(position).toString()}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
+//      creating a new adapter class
+        val adapter = TodoAdapter(todolist)
 
-            }
+        rvTodos.adapter = adapter
+        rvTodos.layoutManager = LinearLayoutManager(this)
+
+
+        btnAddTodo.setOnClickListener {
+            val title = etNewTodo.text.toString()
+            val todo = Todo(title, false)
+
+            todolist.add(todo)
+
+            adapter.notifyItemInserted(todolist.size - 1)
 
         }
     }
