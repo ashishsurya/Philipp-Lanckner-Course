@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.activity_main.*
 
 /*
@@ -32,29 +33,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fF = FirstFragment();
-        val sF = SecondFragment();
-        val tF = ThirdFragment()
+        val images = listOf<Int>(
+            R.drawable.profile,
+            R.drawable.profile,
+            R.drawable.profile,
+            R.drawable.profile,
+            R.drawable.profile,
+            R.drawable.profile,
+            R.drawable.profile,
+        )
 
-        setCurrentFragment(fF)
 
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            when(it.itemId) {
-                R.id.miHome -> setCurrentFragment(fF)
-                R.id.miMessages -> setCurrentFragment(sF)
-                R.id.miProfile -> setCurrentFragment(tF)
-            }
-            true
-        }
+        val adapter = ViewPagerAdapter(images)
+        viewpager.adapter = adapter
+
+
+        viewpager.orientation = ViewPager2.ORIENTATION_VERTICAL
 
     }
-
-
-    private fun setCurrentFragment(fragment: Fragment) =
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment, fragment)
-            commit()
-        }
 
 
 }
