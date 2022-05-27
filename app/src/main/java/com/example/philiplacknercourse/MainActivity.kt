@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 
 /*
@@ -48,7 +49,10 @@ class MainActivity : AppCompatActivity() {
         viewpager.adapter = adapter
 
 
-        viewpager.orientation = ViewPager2.ORIENTATION_VERTICAL
+        TabLayoutMediator(tabLayout,viewpager) {tab,postiton ->
+            tab.text = "Tab ${postiton+1}"
+
+        }.attach()
 
     }
 
